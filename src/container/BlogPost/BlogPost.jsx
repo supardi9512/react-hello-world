@@ -3,6 +3,9 @@ import './BlogPost.css';
 import Post from '../../component/Post/Post';
 
 class BlogPost extends Component {
+    componentDidMount() {
+        
+    }
     render() {
         return(
             <Fragment>
