@@ -1,8 +1,24 @@
 import React, {Component} from 'react';
 import YouTubeComp from '../../component/YoutubeComp/YouTubeComp';
 import Product from '../Product/Product';
+import LifeCycleComp from '../LifeCycleComp/LifeCycleComp';
 
 class Home extends Component {
+
+    // nilai awal, untuk lifecycle unmounting
+    state = {
+        showComponent: true
+    }
+
+    // component lifecycle unmounting, untuk menghilangkan komponen
+    componentDidMount() {
+        // setTimeout(() => {
+        //     this.setState({
+        //         showComponent: false
+        //     })
+        // }, 15000)
+    }
+
     render() {
         return (
             <div>
@@ -28,6 +44,12 @@ class Home extends Component {
                 <p>Counter</p>
                 <hr/>
                 <Product />
+                <p>LifeCycle Component</p>
+                <hr/>
+                {
+                    // jika showComponent=true , munculkan komponennya, namun jika false tidak munculkan apapun
+                    this.state.showComponent ? <LifeCycleComp /> : null
+                }
             </div>
         )
     }

@@ -7,6 +7,7 @@ class Product extends Component {
         order: 4
     }
 
+    // mengubah/mengupdate nilai state order terbaru
     handleCounterChange = (newValue) => {
         this.setState({
             order: newValue
