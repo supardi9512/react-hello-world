@@ -16,11 +16,21 @@ class BlogPost extends Component {
 
     // fungsi Untuk memanggil data get 
     getPostAPI = () => {
-        axios.get('http://localhost:3004/posts')
+        axios.get('http://localhost:3004/posts?_sort=id&_order=desc')
         .then((result) => {
             this.setState({
                 post: result.data
             })
+        })
+    }
+
+    // fungsi/method untuk post / simpan data API
+    postDataToAPI = () => {
+        axios.post('http://localhost:3004/posts', this.state.formBlogPost).then((res) => {
+            console.log(res);
+            this.getPostAPI();
+        }, (err) => {
+            console.log('error: ', err); // menampilkan error jika error
         })
     }
 
@@ -34,13 +44,17 @@ class BlogPost extends Component {
     handleFormChange = (event) => {
         // console.log('form change', event.target)
         let formBlogPostNew = {...this.state.formBlogPost};
+        let timestamp = new Date().getTime();
+        formBlogPostNew['id'] = timestamp;
         formBlogPostNew[event.target.name] = event.target.value;
         this.setState({
             formBlogPost: formBlogPostNew
-        }, () => {
-            console.log('value obj formBlogPost: ', this.state.formBlogPost);
         })
         
+    }
+
+    handleSubmit = () => {
+        this.postDataToAPI(); // memanggil method postDataToAPI
     }
 
     componentDidMount() {
@@ -66,7 +80,7 @@ class BlogPost extends Component {
                     <input type="text" name="title" placeholder="add title" onChange={this.handleFormChange}/>
                     <label htmlFor="body">Blog Content</label>
                     <textarea name="body" id="body" cols="30" rows="10" placeholder="add blog content" onChange={this.handleFormChange}></textarea>
-                    <button className="btn-submit">Simpan</button>
+                    <button className="btn-submit" onClick={this.handleSubmit}>Simpan</button>
                 </div>
                 {
                     // looping data dari API
