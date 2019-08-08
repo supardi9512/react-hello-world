@@ -19,7 +19,11 @@ class DetailPost extends Component {
                     title: post.title,
                     body: post.body
                 }
+<<<<<<< HEAD
             })
+=======
+            });
+>>>>>>> 9f116bc14b53c0bbab3ca9ebbb35cda2269ddc5c
         });
     }
 
