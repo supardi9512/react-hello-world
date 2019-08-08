@@ -98,6 +98,7 @@ class BlogPost extends Component {
         }
     }
 
+    // method untuk berpindah ke halaman detail
     handleDetail = (id) => {
         this.props.history.push(`/detail-post/${id}`);
     }
